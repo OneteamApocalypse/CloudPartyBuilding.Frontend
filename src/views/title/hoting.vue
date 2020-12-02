@@ -1,97 +1,139 @@
 <template>
-	
-	<div class="hoting">
-		<div class="work">
-		<h3>组织活动</h3>
-		<work-list v-for="(item,index) in hotList">
-		  <br>
-			<a href="https://element.eleme.io"  target="_blank">{{item.name}}</a>
-			<h5>{{item.text}}</h5>
-			</br>
-		</work-list>
+
+	<div class="ho">
+
+
+		<ul class="list">
+			<el-image src="http://www.people.cn/img/2014peoplelogo/rmw_logo.gif"></el-image>
+			<br><br>
+			<li v-for="item in listData">
+				<a :href="item.link" target="_blank" rel="noopener noreferrer">{{item.title}}</a>
+				<div>{{item.publishedDate | formatDate}}</div>
+				
+			</li>
+		</ul>
 	</div>
-	
-		<div>
-		      <ul class="list">
-		         <li v-for="item in list">
-		           <router-link :to="'/newList/'+item.aid">{{item.title}}</router-link>
-					
-		         </li>
-					  
-		      </ul>
-		   </div>
-</div>
 </template>
 
 <script>
-
 	import Axios from "axios";
 	import newList from "@/components/newList"; //引入组件
-	// 导出组件
+	// // 导出组件
+
+	// export default {
+	// name:'hoting',
+	// data() {
+	// 	return {
+
+	// 		list:[]
+	// 	};
+	// },
+	// 	methods:{
+	// 	  getData(){
+	// 	    var api='http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
+	// 	    Axios.get(api).then((response)=>{
+	// 	      this.list=response.data.result;
+	// 	      //console.log(response.data.result);
+	// 	    }).catch((error)=>{
+	// 	      console.log(error);
+	// 	    });
+	// 	  },
+
+
+	// 	},
+	import {
+		newsrss
+	} from "@/api/newsrss";
+
 	export default {
-	name:'hoting',
-	data() {
-		return {
-		hotList: [
-			{name:"第一次组织活动",
-			text:"阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴"
-			},
-			{name:"第二次组织活动",
-			text:"阿松肯定会我i的那位i的年纪own"
-			},
-			{name:"第三次组织活动",
-			text:"死啊等会我的后期无敌回去"
-			},
-			{name:"第四次组织活动",
-			text:"东起带你去哦我的弄完i的浓情"
-			},
-			{name:"第五次组织活动",
-			text:"地区我都i前往东i你数据库范式恐惧愤怒"}
-		],
-		list:[]
-		};
-	},
-		methods:{
-		  getData(){
-		    var api='http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
-		    Axios.get(api).then((response)=>{
-		      this.list=response.data.result;
-		      //console.log(response.data.result);
-		    }).catch((error)=>{
-		      console.log(error);
-		    });
-		  }
+		// filters:{
+		//         formatTimeToStr:function(time){
+
+		//             return formatTimeToStr(time);
+		//         },
+		//  },
+		data() {
+			return {
+
+				// //模糊查询
+				// searchParams: {
+				//   title: "",
+				//   type: ""
+				// },
+
+				listData: [],
+				date: '',
+
+				showEditDialog: false,
+				id: '',
+			}
 		},
-		mounted(){
-		  this.getData();
-		}
-}
+		filters: {
+		      formatDate: function (value) {
+		        let date = new Date(value);
+		        let y = date.getFullYear();
+		        let MM = date.getMonth() + 1;
+		        MM = MM < 10 ? ('0' + MM) : MM;
+		        let d = date.getDate();
+		        d = d < 10 ? ('0' + d) : d;
+		        // let h = date.getHours();
+		        // h = h < 10 ? ('0' + h) : h;
+		        // let m = date.getMinutes();
+		        // m = m < 10 ? ('0' + m) : m;
+		        // let s = date.getSeconds();
+		        // s = s < 10 ? ('0' + s) : s;
+		        return y + '-' + MM + '-' + d ;
+		      },
+		},
+
+		computed: {
+
+		},
+
+		created() {
+			//页面一加载就初始化部门列表
+			this.initepartmentListDate()
+		},
+		methods: {
+
+
+			//查询部门列表数据
+			initepartmentListDate() {
+				newsrss().then(r => {
+					//获取到从后台传入的部门列表
+					console.log(r)
+					this.listData = r
+				})
+			},
+
+		},
+
+	}
+
 </script>
 
-<style scoped>
-	.work{
+<style>
+	.ho {
+		width: 100%;
+		height: 60%;
+		
+
+
+	}
+
+	.list li {
+		display: block;
+		text-align: left;
+		padding: 4px 0;
 		font-size: 20px;
-		text-align: center;
-		font-weight:700;
-		width: 50%;
-		padding-top:100px;
-		padding-bottom:100px;
-		background-color:#EEEEEE;
-		margin: auto;
-		
+
+
 	}
-	.work br{
-		font-size: 16px;
-		text-align: center;
-		font-weight:600;
-		
-	}
-	
-	.list{
-	  li{
-	    display: block;
-	    text-align: left;
-	    padding: 10px 0;
-	  }
+
+	.list {
+		width: 60%;
+		margin: 0 auto;
+
+
 	}
 </style>

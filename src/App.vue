@@ -1,22 +1,46 @@
 <template>
- <div id="app">
-    <router-view name="blank" />
-    <router-view />
+  <div id="app">
+    <router-view name="blank"/>
+	<router-view />
   </div>
 </template>
-
 <script>
-	export default {
-	name: 'App'
-}
+  export default {
+    name: 'App',
+    data(){
+      return{
+       
+      }
+    },
+  }
 </script>
+<!-- <style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>  -->
+<!-- <template>
+ <div id="app">
+    <router-view name="blank" />
+    <router-view name="sceond"/>
+
+  </div>
+</template> -->
+
+<!-- 
+
 <style>
 	*{
 		margin: 0;
 		padding: 0;
 		left:;ist-style-type: none;
 }
-</style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,4 +61,6 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-</style>
+</style> -->
+
+ -->
