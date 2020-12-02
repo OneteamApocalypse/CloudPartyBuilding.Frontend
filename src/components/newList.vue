@@ -1,7 +1,7 @@
 <template>
 	<div class="news">
 	      <header>
-	        <router-link to="/#/" class="gobackLink"><< 返回列表</router-link>
+	        <router-link to="/" class="gobackLink"><< 返回列表</router-link>
 	      </header>
 	      <h2>{{list.title}}</h2>
 	      <div class="cont" v-html="list.content"></div>

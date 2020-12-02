@@ -1,8 +1,8 @@
-const devApiUrl = "http://192.168.49.97:8088"; //本地开发环境
+const devApiUrl = "http://192.168.49.97:8089"; //本地开发环境
 const buildDevApiUrl = "http://192.168.48.192:9088"; //打包开发环境
 const buildTestApiUrl = "http://192.168.48.192:9188"; //打包测试环境
 const buildProApiUrl = "https://api.xxx.cn"; //打包正式环境
-const serverApiUrl = "http://localhost:8080";//请求后端服务器路径
+const serverApiUrl = "http://localhost:8088";//请求后端服务器路径
 
 let useApiUrl;
 
